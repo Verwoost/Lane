@@ -5,3 +5,4 @@ export default function JoostCarousel() {
     <div>JoostCarousel</div>
   )
 }
+

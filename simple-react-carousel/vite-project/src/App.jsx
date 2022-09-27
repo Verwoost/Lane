@@ -1,14 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import JoostCarousel from './components/JoostCarousel';
+import SzimonCarousel from './components/SzimonCarousel';
+import styled from 'styled-components';
+
+
+
+const PlaceHolder = styled.div`
+width: 300px;
+height: 300px;
+font-size: 1rem;
+background-color: grey;
+font-weight: bold;
+color: white;
+
+`;
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <div className="App">
       <div>
-        <h1>Hallo!</h1>
+      <JoostCarousel></JoostCarousel>
+      <SzimonCarousel></SzimonCarousel>
       </div>
        
     </div>
