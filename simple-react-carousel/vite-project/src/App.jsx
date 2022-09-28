@@ -1,6 +1,5 @@
 import JoostCarousel from "./components/JoostCarousel";
-import SzimonCarousel from "./components/SzimonCarousel";
-import styled from "styled-components";
+import SzimonCarousel from "./components/SzymonCarousel";
 
 function App() {
   return (
