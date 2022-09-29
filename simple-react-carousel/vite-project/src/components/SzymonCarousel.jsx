@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
-export default function SzimonCarousel() {
-  return (
-    <div>SzimonCarousel</div>
-  )
+export default function SzymonCarousel() {
+  return <div>SzymonCarousel</div>;
 }
