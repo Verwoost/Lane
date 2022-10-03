@@ -1,5 +1,6 @@
 import SzymonCarousel from "./components/SzymonCarousel";
 import Lane from "./components/Lane";
+import LaneMultiple from "./components/LaneMultiple";
 
 const slides = [
   {
@@ -23,7 +24,26 @@ const slides = [
   {
     content: () => (
       <div className="withImage">
-        <img src="https://justacoding.blog/wp-content/uploads/2021/10/loop.jpg"></img>
+        <img
+          src="https://image.tmdb.org/t/p/original/rr7E0NoGKxvbkb89eR1GwfoYjpA.jpg"
+          width="200px"
+        ></img>
+        <img
+          src="https://image.tmdb.org/t/p/original/rr7E0NoGKxvbkb89eR1GwfoYjpA.jpg"
+          width="200px"
+        ></img>
+        <img
+          src="https://image.tmdb.org/t/p/original/rr7E0NoGKxvbkb89eR1GwfoYjpA.jpg"
+          width="200px"
+        ></img>
+        <img
+          src="https://image.tmdb.org/t/p/original/rr7E0NoGKxvbkb89eR1GwfoYjpA.jpg"
+          width="200px"
+        ></img>
+        <img
+          src="https://image.tmdb.org/t/p/original/rr7E0NoGKxvbkb89eR1GwfoYjpA.jpg"
+          width="200px"
+        ></img>
       </div>
     ),
   },
@@ -45,7 +65,8 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Lane slides={slides}></Lane>
+        {/* <Lane slides={slides}></Lane> */}
+        <LaneMultiple slides={slides}></LaneMultiple>
         <SzymonCarousel></SzymonCarousel>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function SzymonCarousel() {
-  return <div>SzymonCarousel</div>;
+  return <div>Test</div>;
 }
