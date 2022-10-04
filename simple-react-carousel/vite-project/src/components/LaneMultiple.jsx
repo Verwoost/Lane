@@ -12,6 +12,7 @@ const TestDiv = styled.div`
 
 const TestWrapper = styled.div`
   display: flex;
+  overflow: hidden;
 `;
 
 const LaneContainer = styled.section`
@@ -93,14 +94,138 @@ const SlideInner = styled.div`
   display: flex;
 `;
 
+const movies = [
+  //wordt uiteindelijk doorgegeven als prop
+  {
+    backdrop_path: "/rr7E0NoGKxvbkb89eR1GwfoYjpA.jpg",
+    title: "Fight Club",
+    id: 550,
+  },
+  {
+    backdrop_path: "/v1QEIuBM1vvpvfqalahhIyXY0Cm.jpg",
+    title: "The Poseidon Adventure",
+    id: 551,
+  },
+  {
+    backdrop_path: "/k4JIHyAXaGHwAwT7y5Skd17f0Wl.jpg",
+    title: "Pane e tulipani",
+    id: 552,
+  },
+  {
+    backdrop_path: "/r3xsFBD1VTUusk393bBc7SsDUJe.jpg",
+    title: "Dogville",
+    id: 553,
+  },
+  {
+    backdrop_path: "/1qwXItFKqvKYyW1CwbYhxyUC8Pj.jpg",
+    title: "The Cuckoo",
+    id: 554,
+  },
+  {
+    backdrop_path: "/1fJSyFhvxBjyLZsBnYs4641YXu1.jpg",
+    title: "Basquiat",
+    id: 549,
+  },
+  {
+    backdrop_path: "/zyO6j74DKMWfp5snWg6Hwo0T3Mz.jpg",
+    title: "Rashomon",
+    id: 548,
+  },
+  {
+    backdrop_path: "/ww9pokP6M6gp2Iu0o3sT5B7eN66.jpg",
+    title: "The Horse Whisperer",
+    id: 547,
+  },
+  {
+    backdrop_path: "/rr7E0NoGKxvbkb89eR1GwfoYjpA.jpg",
+    title: "Fight Club",
+    id: 550,
+  },
+  {
+    backdrop_path: "/v1QEIuBM1vvpvfqalahhIyXY0Cm.jpg",
+    title: "The Poseidon Adventure",
+    id: 551,
+  },
+  {
+    backdrop_path: "/k4JIHyAXaGHwAwT7y5Skd17f0Wl.jpg",
+    title: "Pane e tulipani",
+    id: 552,
+  },
+  {
+    backdrop_path: "/r3xsFBD1VTUusk393bBc7SsDUJe.jpg",
+    title: "Dogville",
+    id: 553,
+  },
+  {
+    backdrop_path: "/1qwXItFKqvKYyW1CwbYhxyUC8Pj.jpg",
+    title: "The Cuckoo",
+    id: 554,
+  },
+  {
+    backdrop_path: "/1fJSyFhvxBjyLZsBnYs4641YXu1.jpg",
+    title: "Basquiat",
+    id: 549,
+  },
+  {
+    backdrop_path: "/zyO6j74DKMWfp5snWg6Hwo0T3Mz.jpg",
+    title: "Rashomon",
+    id: 548,
+  },
+  {
+    backdrop_path: "/ww9pokP6M6gp2Iu0o3sT5B7eN66.jpg",
+    title: "The Horse Whisperer",
+    id: 547,
+  },
+  {
+    backdrop_path: "/rr7E0NoGKxvbkb89eR1GwfoYjpA.jpg",
+    title: "Fight Club",
+    id: 550,
+  },
+  {
+    backdrop_path: "/v1QEIuBM1vvpvfqalahhIyXY0Cm.jpg",
+    title: "The Poseidon Adventure",
+    id: 551,
+  },
+  {
+    backdrop_path: "/k4JIHyAXaGHwAwT7y5Skd17f0Wl.jpg",
+    title: "Pane e tulipani",
+    id: 552,
+  },
+  {
+    backdrop_path: "/r3xsFBD1VTUusk393bBc7SsDUJe.jpg",
+    title: "Dogville",
+    id: 553,
+  },
+  {
+    backdrop_path: "/1qwXItFKqvKYyW1CwbYhxyUC8Pj.jpg",
+    title: "The Cuckoo",
+    id: 554,
+  },
+  {
+    backdrop_path: "/1fJSyFhvxBjyLZsBnYs4641YXu1.jpg",
+    title: "Basquiat",
+    id: 549,
+  },
+  {
+    backdrop_path: "/zyO6j74DKMWfp5snWg6Hwo0T3Mz.jpg",
+    title: "Rashomon",
+    id: 548,
+  },
+  {
+    backdrop_path: "/ww9pokP6M6gp2Iu0o3sT5B7eN66.jpg",
+    title: "The Horse Whisperer",
+    id: 547,
+  },
+];
+
 export default function LaneMultiple(props) {
-  const slides = props.slides;
+  // const slides = props.slides;
   const slideWidth = 1000;
   const slideHeight = 200;
   const transitionSpeed = 500;
   const [visibleSlide, setVisibleSlide] = useState(1);
   const [hasTransitionClass, setHasTransitionClass] = useState(true);
-  const [stateSlides, setStateSlides] = useState(slides);
+  const [stateSlides, setStateSlides] = useState(movies);
   const [leftAndRightDisabled, setLeftAndRightDisabled] = useState(false);
   const [imageAmount, setImageAmount] = useState(0);
   const testArray = [];
@@ -110,7 +235,7 @@ export default function LaneMultiple(props) {
   // will run only once, when the component mounts
   // this makes it an ideal place to trigger this functionality
   useEffect(() => {
-    const slidesWithClones = [...slides];
+    const slidesWithClones = [...movies];
     slidesWithClones.unshift(slidesWithClones[slidesWithClones.length - 1]);
     slidesWithClones.push(slidesWithClones[1]);
     setStateSlides(slidesWithClones);
@@ -204,9 +329,12 @@ export default function LaneMultiple(props) {
   };
 
   const getImages = () => {
-    for (let i = 0; i < imageAmount; i++) {
-      testArray.push("1");
+    if (testArray.length < 1) {
+      for (let i = 0; i < imageAmount; i++) {
+        testArray.push(movies[i]);
+      }
     }
+    console.log(testArray);
     return testArray;
   };
 
@@ -257,14 +385,26 @@ export default function LaneMultiple(props) {
         >
           {stateSlides.map((slide, index) => {
             return (
+              // <Slide key={index} style={slideDimensionStyles()}>
+              //   <SlideInner>{slide.content()}</SlideInner>
+              // </Slide>
               <Slide key={index} style={slideDimensionStyles()}>
-                <SlideInner>{slide.content()}</SlideInner>
+                <MSlide
+                  imageAmount={imageAmount}
+                  list={getImages()}
+                  title={slide.title}
+                  imageHeight={(9 / 16) * slideHeight + "px"}
+                  imageWidth={screenWidth / imageAmount + "px"}
+                  dimensions={slideDimensionStyles()}
+                  myIndex={index}
+                  backdrop_path={slide.backdrop_path}
+                ></MSlide>
               </Slide>
             );
           })}
         </Slides>
       </LaneContainer>
-      <TestWrapper>
+      {/* <TestWrapper>
         {getImages().map((slide, index) => {
           return (
             <TestDiv
@@ -277,6 +417,15 @@ export default function LaneMultiple(props) {
           );
         })}
       </TestWrapper>
+      <TestWrapper style={slideDimensionStyles()}>
+        <MSlide
+          imageAmount={imageAmount}
+          list={getImages()}
+          imageHeight={(9 / 16) * slideHeight + "px"}
+          imageWidth={screenWidth / imageAmount + "px"}
+          dimensions={slideDimensionStyles()}
+        ></MSlide>
+      </TestWrapper> */}
     </div>
   );
 }

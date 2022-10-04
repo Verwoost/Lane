@@ -1,33 +1,31 @@
-import SzymonCarousel from "./components/SzymonCarousel";
+import SzymonCarousel from "./components/SzymonCarousel/SzymonCarousel";
 import Lane from "./components/Lane";
 import LaneMultiple from "./components/LaneMultiple";
+import styled from "styled-components";
 
 const genresPlaceholder = [
   {
-    "id": 18,
-    "name": "Drama",
+    id: 18,
+    name: "Drama",
   },
   {
-    "id": 10749,
-    "name": "Romance",
+    id: 10749,
+    name: "Romance",
   },
   {
-    "id": 35,
-    "name": "Comedy",
-  }
-]
+    id: 35,
+    name: "Comedy",
+  },
+];
 
 const PlaceHolder = styled.div`
-width: 300px;
-height: 300px;
-font-size: 1px;
-background-color: grey;
-font-weight: bold;
-color: white;
-
+  width: 300px;
+  height: 300px;
+  font-size: 1px;
+  background-color: grey;
+  font-weight: bold;
+  color: white;
 `;
-
-
 
 const slides = [
   {
@@ -74,18 +72,6 @@ const slides = [
       </div>
     ),
   },
-  {
-    title: "Slide #4",
-    content: () => (
-      <div>
-        <h2>Style me!</h2> <small>...in any way you please</small>
-      </div>
-    ),
-  },
-  {
-    title: "Slide #5",
-    content: () => <h3>I'm the final slide...</h3>,
-  },
 ];
 
 function App() {
@@ -94,12 +80,16 @@ function App() {
       <div>
         {/* <Lane slides={slides}></Lane> */}
         <LaneMultiple slides={slides}></LaneMultiple>
-        
-        {genresPlaceholder.map(genre =>{
-      console.log(genre)
-      return (
-        <SzymonCarousel key={genresPlaceholder.indexOf(genre)} genre={genre}/>)
-      })}
+
+        {genresPlaceholder.map((genre) => {
+          console.log(genre);
+          return (
+            <SzymonCarousel
+              key={genresPlaceholder.indexOf(genre)}
+              genre={genre}
+            />
+          );
+        })}
       </div>
     </div>
   );
