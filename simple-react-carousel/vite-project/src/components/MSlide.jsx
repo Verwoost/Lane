@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const TestDiv = styled.div`
+  display: flex;
   height: ${(props) => props.setheight};
   width: ${(props) => props.setwidth};
   position: relative;
