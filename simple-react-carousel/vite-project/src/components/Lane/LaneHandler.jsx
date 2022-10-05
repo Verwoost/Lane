@@ -1,8 +1,4 @@
-import SzymonCarousel from "./components/SzymonCarousel/SzymonCarousel";
-import Lanem from "./components/Lane/Lanem";
-import LaneMultiple from "./components/LaneMultiple";
-import styled from "styled-components";
-import LaneHandler from "./components/Lane/LaneHandler";
+import Lanem from "./Lanem";
 
 const genresPlaceholder = [
   {
@@ -265,7 +261,7 @@ const movies = [
 
 const screenWidth = document.getElementById("root").clientWidth;
 
-function App() {
+function LaneHandler() {
   function getAmount() {
     if (screenWidth < 500) {
       return 2;
@@ -292,25 +288,9 @@ function App() {
     return slices;
   }
   return (
-    <div className="App">
-      <div>
-        {/* <Lane slides={slides}></Lane> */}
-        <LaneMultiple></LaneMultiple>
-
-        {/* {genresPlaceholder.map((genre) => {
-          console.log(genre);
-          return (
-            <SzymonCarousel
-              key={genresPlaceholder.indexOf(genre)}
-              genre={genre}
-            />
-          );
-        })} */}
-        {/* <Lanem slices={getSlices()}></Lanem> */}
-        <LaneHandler></LaneHandler>
-      </div>
+    <div>
+      <Lanem slices={getSlices()} itemsPerLane={getAmount()}></Lanem>
     </div>
   );
 }
-
-export default App;
+export default LaneHandler;

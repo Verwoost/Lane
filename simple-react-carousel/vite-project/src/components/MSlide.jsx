@@ -1,10 +1,9 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 
 const TestDiv = styled.div`
   display: flex;
   height: ${(props) => props.setheight};
-  width: ${(props) => props.setwidth};
+  width: 100%;
   position: relative;
   top: 0;
   left: 0;
@@ -21,14 +20,17 @@ const TestTitle = styled.p`
 
 export default function MSlide(props) {
   return (
-    <TestDiv setwidth={props.imageWidth} setheight={props.imageHeight}>
-      <TestTitle>{props.title}</TestTitle>
+    <TestDiv setheight={props.imageHeight}>
       {props.list.map((item, index) => {
         return (
-          <img
-            src={"https://image.tmdb.org/t/p/original" + item.backdrop_path}
-            width={props.imageWidth}
-          ></img>
+          <TestDiv>
+            <TestTitle>{item.title}</TestTitle>
+            <img
+              src={"https://image.tmdb.org/t/p/original" + item.backdrop_path}
+              width={props.imageWidth}
+              height={props.imageHeight}
+            ></img>
+          </TestDiv>
         );
       })}
     </TestDiv>

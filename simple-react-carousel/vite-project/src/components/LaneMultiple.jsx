@@ -3,18 +3,6 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import MSlide from "./MSlide";
 
-const TestDiv = styled.div`
-  height: ${(props) => props.setheight};
-  width: ${(props) => props.setwidth};
-  background-color: tomato;
-  border: 1px solid black;
-`;
-
-const TestWrapper = styled.div`
-  display: flex;
-  overflow: hidden;
-`;
-
 const LaneContainer = styled.section`
   overflow: hidden;
   position: relative;
@@ -44,9 +32,9 @@ const IndicatorRect = styled.div`
   border-radius: 50%;
 `;
 
-const ScrollLeftButton = styled.button`
+const ScrollLeftButton = styled.span`
   /* child of LaneContainer */
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 6px;
   margin-top: -10px;
@@ -55,11 +43,28 @@ const ScrollLeftButton = styled.button`
   background: white;
   padding: 4px 6px;
   border-radius: 3px;
-  opacity: ${(props) => (props.disabled ? "0.3" : "1")};
+  opacity: ${(props) => (props.disabled ? "0.3" : "1")}; */
+  cursor: pointer;
+  width: 3%;
+  height: 100%;
+  background-color: #14141440;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6vw;
+  color: transparent;
+  transition: font-size 70ms linear;
+  &:hover {
+    color: white;
+    background-color: #14141480;
+    font-size: 2.2vw;
+  }
 `;
 
 const ScrollRightButton = styled(ScrollLeftButton)`
-  right: 6px;
+  right: 0;
   left: auto;
 `;
 
@@ -218,9 +223,7 @@ const movies = [
   },
 ];
 
-export default function LaneMultiple(props) {
-  // const slides = props.slides;
-  const slideWidth = 1000;
+export default function LaneMultiple() {
   const slideHeight = 200;
   const transitionSpeed = 500;
   const [visibleSlide, setVisibleSlide] = useState(1);
@@ -228,14 +231,18 @@ export default function LaneMultiple(props) {
   const [stateSlides, setStateSlides] = useState(movies);
   const [leftAndRightDisabled, setLeftAndRightDisabled] = useState(false);
   const [imageAmount, setImageAmount] = useState(0);
-  const testArray = [];
   const screenWidth = document.getElementById("root").clientWidth;
+  const slides = [
+    movies.slice(0, 6),
+    movies.slice(6, 12),
+    movies.slice(12, 18),
+  ];
 
   // useEffect with an empty array as the second parameter
   // will run only once, when the component mounts
   // this makes it an ideal place to trigger this functionality
   useEffect(() => {
-    const slidesWithClones = [...movies];
+    const slidesWithClones = [...slides];
     slidesWithClones.unshift(slidesWithClones[slidesWithClones.length - 1]);
     slidesWithClones.push(slidesWithClones[1]);
     setStateSlides(slidesWithClones);
@@ -243,19 +250,14 @@ export default function LaneMultiple(props) {
       setImageAmount(2);
     }
     if (screenWidth < 800 && window.innerWidth > 500) {
-      console.log("3.5");
       setImageAmount(3);
     }
     if (screenWidth < 1100 && window.innerWidth > 800) {
-      console.log("4.5");
       setImageAmount(4);
     }
     if (screenWidth > 1100) {
-      console.log("5.5");
       setImageAmount(6);
     }
-    console.log(screenWidth);
-    console.log(stateSlides.length);
   }, []);
 
   // Monitor changes for the visibleSlide value and react accordingly
@@ -313,29 +315,8 @@ export default function LaneMultiple(props) {
     return "-" + visibleSlide * screenWidth + "px";
   };
 
-  //   const slideDimensionStyles = () => {
-  //     return { width: slideWidth + "px", height: (9 / 16) * slideHeight + "px" };
-  //   };
-
   const slideDimensionStyles = () => {
     return { width: screenWidth + "px", height: (9 / 16) * slideHeight + "px" };
-  };
-
-  const imageDimensionStyles = () => {
-    return {
-      width: screenWidth / slidesAmount + "px",
-      height: (9 / 16) * slideHeight + "px",
-    };
-  };
-
-  const getImages = () => {
-    if (testArray.length < 1) {
-      for (let i = 0; i < imageAmount; i++) {
-        testArray.push(movies[i]);
-      }
-    }
-    console.log(testArray);
-    return testArray;
   };
 
   const scrollLeft = () => {
@@ -361,13 +342,13 @@ export default function LaneMultiple(props) {
           onClick={!leftAndRightDisabled ? scrollLeft : null}
           disabled={leftAndRightDisabled}
         >
-          Left
+          ❮
         </ScrollLeftButton>
         <ScrollRightButton
           onClick={!leftAndRightDisabled ? scrollRight : null}
           disabled={leftAndRightDisabled}
         >
-          Right
+          ❯
         </ScrollRightButton>
 
         <SlideIndicator>
@@ -385,47 +366,21 @@ export default function LaneMultiple(props) {
         >
           {stateSlides.map((slide, index) => {
             return (
-              // <Slide key={index} style={slideDimensionStyles()}>
-              //   <SlideInner>{slide.content()}</SlideInner>
-              // </Slide>
               <Slide key={index} style={slideDimensionStyles()}>
-                <MSlide
-                  imageAmount={imageAmount}
-                  list={getImages()}
-                  title={slide.title}
-                  imageHeight={(9 / 16) * slideHeight + "px"}
-                  imageWidth={screenWidth / imageAmount + "px"}
-                  dimensions={slideDimensionStyles()}
-                  myIndex={index}
-                  backdrop_path={slide.backdrop_path}
-                ></MSlide>
+                <SlideInner>
+                  <MSlide
+                    list={Array.from(slide)}
+                    imageWidth={screenWidth / imageAmount + "px"}
+                    imageHeight={(9 / 16) * slideHeight + "px"}
+                  ></MSlide>
+                </SlideInner>
+
+                {/* <SlideInner></SlideInner> */}
               </Slide>
             );
           })}
         </Slides>
       </LaneContainer>
-      {/* <TestWrapper>
-        {getImages().map((slide, index) => {
-          return (
-            <TestDiv
-              key={index}
-              setwidth={screenWidth / imageAmount + "px"}
-              setheight={(9 / 16) * slideHeight + "px"}
-            >
-              {index + 1}
-            </TestDiv>
-          );
-        })}
-      </TestWrapper>
-      <TestWrapper style={slideDimensionStyles()}>
-        <MSlide
-          imageAmount={imageAmount}
-          list={getImages()}
-          imageHeight={(9 / 16) * slideHeight + "px"}
-          imageWidth={screenWidth / imageAmount + "px"}
-          dimensions={slideDimensionStyles()}
-        ></MSlide>
-      </TestWrapper> */}
     </div>
   );
 }
