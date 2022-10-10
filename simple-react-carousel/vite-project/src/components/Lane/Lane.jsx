@@ -116,9 +116,14 @@ export default function Lane(props) {
         >
           ❮
         </ScrollLeftButton>
-        <ScrollRightButton
+        <ScrollRightButton 
           onClick={!leftAndRightDisabled ? scrollRight : null}
           disabled={leftAndRightDisabled}
+          style={{
+            opacity: isHovered ? '1' : '', 
+            color: isHovered ? 'white' : '',
+            backgroundColor: isHovered ? '#14141480' : '',
+          }}
         >
           ❯
         </ScrollRightButton>
