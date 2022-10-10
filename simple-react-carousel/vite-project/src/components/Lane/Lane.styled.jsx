@@ -12,16 +12,19 @@ export const SlideIndicator = styled.div`
   z-index: 10;
   height: 40px;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-right: 3rem;
+  opacity: 0; /* set opacity 1 on hover / 0 on mouse leave */
 `;
 
 export const IndicatorRect = styled.div`
   /* child of SlideIndicator */
-  width: 20px;
-  height: 5px;
+  width: 12px;
+  height: 2px;
   background: ${(props) => (props.active ? "lightgrey" : "grey")};
-  margin: 0 5px;
+  margin: 0 1px;
 `;
 
 export const ScrollLeftButton = styled.span`
@@ -47,9 +50,28 @@ export const ScrollLeftButton = styled.span`
   }
 `;
 
-export const ScrollRightButton = styled(ScrollLeftButton)`
+export const ScrollRightButton = styled.span`
   right: 0;
   left: auto;
+  cursor: pointer;
+  width: 3rem;
+  height: 100%;
+  background-color: #14141440;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: transparent;
+  transition: font-size 70ms linear;
+  &:hover {
+    color: white;
+    background-color: #14141480;
+    font-size: 28px;
+  }
+
+  
 `;
 
 export const Slides = styled.div`

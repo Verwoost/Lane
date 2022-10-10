@@ -91,9 +91,14 @@ export default function Lane(props) {
     );
   };
 
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div>
-      <SlideIndicator>
+    
+      <SlideIndicator style={{
+            opacity: isHovered ? '1' : ''
+          }}>
         {stateSlides.map((slide, index) => {
           if (index === 0 || index === stateSlides.length - 1) {
             return null;
@@ -101,7 +106,10 @@ export default function Lane(props) {
           return <IndicatorRect key={index} active={dotIsActive(index)} />;
         })}
       </SlideIndicator>
-      <LaneContainer style={slideDimensionStyles()}>
+      
+      <LaneContainer style={slideDimensionStyles()} 
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}>
         <ScrollLeftButton
           onClick={!leftAndRightDisabled ? scrollLeft : null}
           disabled={leftAndRightDisabled}
