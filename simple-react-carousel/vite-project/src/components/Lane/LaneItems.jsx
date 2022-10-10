@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import MovieCard from "./movie-card/MovieCard";
+
 import logo from "../../assets/n_logo.ico";
 
 const Container = styled.div`
