@@ -43,9 +43,8 @@ export const ScrollLeftButton = styled.span`
   font-size: 24px;
   color: transparent;
   transition: font-size 70ms linear;
+  opacity: 0;
   &:hover {
-    color: white;
-    background-color: #14141480;
     font-size: 28px;
   }
 `;

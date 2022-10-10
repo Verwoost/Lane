@@ -91,7 +91,7 @@ export default function Lane(props) {
     );
   };
 
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false); /*   hover state voor indicators/ left right buttons  */
 
   return (
     <div>
@@ -113,6 +113,11 @@ export default function Lane(props) {
         <ScrollLeftButton
           onClick={!leftAndRightDisabled ? scrollLeft : null}
           disabled={leftAndRightDisabled}
+          style={{
+            opacity: isHovered ? '1' : '', 
+            color: isHovered ? 'white' : '',
+            backgroundColor: isHovered ? '#14141480' : '',
+          }}
         >
           ❮
         </ScrollLeftButton>
