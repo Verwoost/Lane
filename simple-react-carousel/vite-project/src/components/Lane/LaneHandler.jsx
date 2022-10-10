@@ -1,4 +1,4 @@
-import Lanem from "./Lanem";
+import Lane from "./Lane";
 
 const genresPlaceholder = [
   {
@@ -289,7 +289,7 @@ function LaneHandler() {
   }
   return (
     <div>
-      <Lanem slices={getSlices()} itemsPerLane={getAmount()}></Lanem>
+      <Lane slices={getSlices()} itemsPerLane={getAmount()}></Lane>
     </div>
   );
 }

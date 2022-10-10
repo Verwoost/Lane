@@ -11,7 +11,7 @@ import {
 } from "./Lane.styled";
 import LaneItems from "./LaneItems";
 
-export default function Lanem(props) {
+export default function Lane(props) {
   const slideHeight = 200;
   const transitionSpeed = 500;
   const [visibleSlide, setVisibleSlide] = useState(1);

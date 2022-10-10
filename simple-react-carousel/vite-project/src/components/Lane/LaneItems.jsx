@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import MovieCard from "./movie-card/MovieCard";
+import logo from "../../assets/n_logo.ico";
 
 const Container = styled.div`
   display: flex;
@@ -7,21 +9,41 @@ const Container = styled.div`
   position: relative;
   top: 0;
   left: 0;
-  background-color: transparent;
+  background-color: black;
+  img:nth-of-type(2) {
+    position: absolute;
+    top: 8px;
+    left: 3px;
+    width: 1.3vw;
+  }
 `;
 
 const Title = styled.p`
   position: absolute;
-  left: 0;
-  bottom: 0;
+  width: 100%;
+  padding: 0 5px;
+  bottom: 7px;
+
+  font-family: Futura;
+  text-align: center;
+  line-height: 0.9;
+  font-weight: bold;
   color: white;
-  padding: 1rem;
+  z-index: 10;
+  text-shadow: 2px 2px 2px rgb(0, 0, 0, 0.75);
 `;
 
 const SlideImg = styled.img`
   padding-inline: 2px;
   border-radius: 0.3vw;
+  cursor: pointer;
 `;
+
+const logoArray = [logo, null];
+
+function showLogo() {
+  return logoArray[Math.floor(Math.random() * logoArray.length)];
+}
 
 export default function LaneItems(props) {
   return (
@@ -29,12 +51,24 @@ export default function LaneItems(props) {
       {props.list.map((item, index) => {
         return (
           <Container>
+            {/* <Title>{item.title}</Title>
+            <SlideImg
+              src={"https://image.tmdb.org/t/p/original" + item.backdrop_path}
+              width={props.imageWidth}
+              height={props.imageHeight}
+            ></SlideImg> */}
+            {/* <MovieCard
+              image={"https://image.tmdb.org/t/p/original" + item.backdrop_path}
+              imageHeight={props.imageHeight}
+              imageWidth={props.imageWidth}
+            ></MovieCard> */}
             <Title>{item.title}</Title>
             <SlideImg
               src={"https://image.tmdb.org/t/p/original" + item.backdrop_path}
               width={props.imageWidth}
               height={props.imageHeight}
             ></SlideImg>
+            <img src={showLogo(logoArray)}></img>
           </Container>
         );
       })}
