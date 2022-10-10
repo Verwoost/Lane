@@ -51,17 +51,6 @@ export default function LaneItems(props) {
       {props.list.map((item, index) => {
         return (
           <Container>
-            {/* <Title>{item.title}</Title>
-            <SlideImg
-              src={"https://image.tmdb.org/t/p/original" + item.backdrop_path}
-              width={props.imageWidth}
-              height={props.imageHeight}
-            ></SlideImg> */}
-            {/* <MovieCard
-              image={"https://image.tmdb.org/t/p/original" + item.backdrop_path}
-              imageHeight={props.imageHeight}
-              imageWidth={props.imageWidth}
-            ></MovieCard> */}
             <Title>{item.title}</Title>
             <SlideImg
               src={"https://image.tmdb.org/t/p/original" + item.backdrop_path}
