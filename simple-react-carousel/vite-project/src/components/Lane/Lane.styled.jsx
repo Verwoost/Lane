@@ -12,22 +12,27 @@ export const SlideIndicator = styled.div`
   z-index: 10;
   height: 40px;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-right: 3rem;
+  opacity: 0; /* set opacity 1 on hover / 0 on mouse leave */
 `;
 
 export const IndicatorRect = styled.div`
   /* child of SlideIndicator */
-  width: 20px;
-  height: 5px;
+  width: 12px;
+  height: 2px;
   background: ${(props) => (props.active ? "lightgrey" : "grey")};
-  margin: 0 5px;
+  margin: 0 1px;
 `;
 
 export const ScrollLeftButton = styled.span`
   /* child of LaneContainer */
   /* position: absolute;
   opacity: ${(props) => (props.disabled ? "0.3" : "1")}; */
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
   cursor: pointer;
   width: 3rem;
   height: 100%;
@@ -40,16 +45,35 @@ export const ScrollLeftButton = styled.span`
   font-size: 24px;
   color: transparent;
   transition: font-size 70ms linear;
+  opacity: 0;
   &:hover {
-    color: white;
-    background-color: #14141480;
     font-size: 28px;
   }
 `;
 
-export const ScrollRightButton = styled(ScrollLeftButton)`
+export const ScrollRightButton = styled.span`
   right: 0;
   left: auto;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  cursor: pointer;
+  width: 3rem;
+  height: 100%;
+  background-color: #14141440;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: transparent;
+  transition: font-size 70ms linear;
+  opacity: 0;
+  &:hover {
+    font-size: 28px;
+  }
+
+  
 `;
 
 export const Slides = styled.div`
