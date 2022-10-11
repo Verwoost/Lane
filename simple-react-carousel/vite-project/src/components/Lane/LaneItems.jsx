@@ -35,7 +35,7 @@ const Title = styled.p`
 
 const SlideImg = styled.img`
   padding-inline: 2px;
-  border-radius: 0.3vw;
+  border-radius: 4px;
   cursor: pointer;
 `;
 

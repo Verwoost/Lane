@@ -31,6 +31,8 @@ export const ScrollLeftButton = styled.span`
   /* child of LaneContainer */
   /* position: absolute;
   opacity: ${(props) => (props.disabled ? "0.3" : "1")}; */
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
   cursor: pointer;
   width: 3rem;
   height: 100%;
@@ -52,6 +54,8 @@ export const ScrollLeftButton = styled.span`
 export const ScrollRightButton = styled.span`
   right: 0;
   left: auto;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
   cursor: pointer;
   width: 3rem;
   height: 100%;
