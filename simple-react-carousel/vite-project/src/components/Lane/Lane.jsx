@@ -96,10 +96,10 @@ export default function Lane(props) {
 
   return (
     <div>
-    
+
       <SlideIndicator style={{
-            opacity: isHovered ? '1' : ''
-          }}>
+        opacity: isHovered ? '1' : ''
+      }}>
         {stateSlides.map((slide, index) => {
           if (index === 0 || index === stateSlides.length - 1) {
             return null;
@@ -107,27 +107,28 @@ export default function Lane(props) {
           return <IndicatorRect key={index} active={dotIsActive(index)} />;
         })}
       </SlideIndicator>
-      
-      <LaneContainer style={slideDimensionStyles()} 
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}>
+
+      <LaneContainer style={slideDimensionStyles()}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}>
         <ScrollLeftButton
           onClick={!leftAndRightDisabled ? scrollLeft : null}
           disabled={leftAndRightDisabled}
           style={{
-            opacity: isHovered && isScrolled ? '1' : '', 
+            zIndex: !isScrolled ? '-10' : '',
+            opacity: isHovered && isScrolled ? '1' : '',
             color: isHovered ? 'white' : '',
             backgroundColor: isHovered ? '#14141480' : '',
           }}
         >
           ❮
         </ScrollLeftButton>
-        <ScrollRightButton 
+        <ScrollRightButton
           onClick={!leftAndRightDisabled ? scrollRight : null}
           onMouseDown={() => setIsScrolled(true)}
           disabled={leftAndRightDisabled}
           style={{
-            opacity: isHovered ? '1' : '', 
+            opacity: isHovered ? '1' : '',
             color: isHovered ? 'white' : '',
             backgroundColor: isHovered ? '#14141480' : '',
           }}
