@@ -29,7 +29,10 @@ export default function Lane(props) {
     slidesWithClones.unshift(slidesWithClones[slidesWithClones.length - 1]);
     slidesWithClones.push(slidesWithClones[1]);
     setStateSlides(slidesWithClones);
-  }, []);
+  }, [slides]);
+
+  console.log(slides);
+  console.log(stateSlides);
 
   useEffect(() => {
     if (visibleSlide == stateSlides.length - 1) {
@@ -93,10 +96,18 @@ export default function Lane(props) {
     );
   };
 
+  const [isHovered, setIsHovered] =
+    useState(false); /*   hover state voor indicators/ left right buttons  */
+  const [isScrolled, setIsScrolled] =
+    useState(false); /* set opacity obv naar rechts gescrolled */
+
   return (
     <div>
-      <LaneTitle>Test</LaneTitle>
-      <SlideIndicator>
+      <SlideIndicator
+        style={{
+          opacity: isHovered ? "1" : "",
+        }}
+      >
         {stateSlides.map((slide, index) => {
           if (index === 0 || index === stateSlides.length - 1) {
             return null;
@@ -104,16 +115,33 @@ export default function Lane(props) {
           return <IndicatorRect key={index} active={dotIsActive(index)} />;
         })}
       </SlideIndicator>
-      <LaneContainer className="lane_container" style={slideDimensionStyles()}>
+      <LaneContainer
+        className="lane_container"
+        style={slideDimensionStyles()}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <ScrollLeftButton
           onClick={!leftAndRightDisabled ? scrollLeft : null}
           disabled={leftAndRightDisabled}
+          style={{
+            zIndex: !isScrolled ? "-10" : "",
+            opacity: isHovered && isScrolled ? "1" : "",
+            color: isHovered ? "white" : "",
+            backgroundColor: isHovered ? "#14141480" : "",
+          }}
         >
           ❮
         </ScrollLeftButton>
         <ScrollRightButton
           onClick={!leftAndRightDisabled ? scrollRight : null}
+          onMouseDown={() => setIsScrolled(true)}
           disabled={leftAndRightDisabled}
+          style={{
+            opacity: isHovered ? "1" : "",
+            color: isHovered ? "white" : "",
+            backgroundColor: isHovered ? "#14141480" : "",
+          }}
         >
           ❯
         </ScrollRightButton>
