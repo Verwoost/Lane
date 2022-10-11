@@ -1,8 +1,17 @@
 import styled from "styled-components";
 
 export const LaneContainer = styled.section`
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
+`;
+
+export const LaneTitle = styled.p`
+  position: absolute;
+  left: 60px;
+  /* top: -40px; */
+  z-index: 99;
+  color: white;
+  font-weight: bold;
 `;
 
 export const SlideIndicator = styled.div`

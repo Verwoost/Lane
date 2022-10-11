@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import {
   LaneContainer,
+  LaneTitle,
   SlideIndicator,
   IndicatorRect,
   ScrollLeftButton,
@@ -12,7 +13,7 @@ import {
 import LaneItems from "./LaneItems";
 
 export default function Lane(props) {
-  const slideHeight = 200;
+  // const slideHeight = 200;
   const transitionSpeed = 500;
   const [visibleSlide, setVisibleSlide] = useState(1);
   const [hasTransitionClass, setHasTransitionClass] = useState(true);
@@ -21,6 +22,7 @@ export default function Lane(props) {
   const screenWidth = document.getElementById("root").clientWidth;
   const slides = props.slices;
   const itemsPerLane = props.itemsPerLane;
+  const slideHeight = (screenWidth / itemsPerLane) * (9 / 16);
 
   useEffect(() => {
     const slidesWithClones = [...slides];
@@ -72,7 +74,7 @@ export default function Lane(props) {
   };
 
   const slideDimensionStyles = () => {
-    return { width: screenWidth + "px", height: (9 / 16) * slideHeight + "px" };
+    return { width: screenWidth + "px", height: slideHeight + "px" };
   };
 
   const scrollLeft = () => {
@@ -93,6 +95,7 @@ export default function Lane(props) {
 
   return (
     <div>
+      <LaneTitle>Test</LaneTitle>
       <SlideIndicator>
         {stateSlides.map((slide, index) => {
           if (index === 0 || index === stateSlides.length - 1) {
@@ -101,7 +104,7 @@ export default function Lane(props) {
           return <IndicatorRect key={index} active={dotIsActive(index)} />;
         })}
       </SlideIndicator>
-      <LaneContainer style={slideDimensionStyles()}>
+      <LaneContainer className="lane_container" style={slideDimensionStyles()}>
         <ScrollLeftButton
           onClick={!leftAndRightDisabled ? scrollLeft : null}
           disabled={leftAndRightDisabled}
@@ -125,7 +128,7 @@ export default function Lane(props) {
                 <LaneItems
                   list={Array.from(slide)}
                   imageWidth={screenWidth / itemsPerLane + "px"}
-                  imageHeight={(9 / 16) * slideHeight + "px"}
+                  imageHeight={slideHeight + "px"}
                 ></LaneItems>
               </Slide>
             );
