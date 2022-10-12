@@ -14,17 +14,17 @@ function useWindowSize() {
       });
     }
     window.addEventListener("resize", handleResize);
-    screen.orientation.addEventListener("change", handleResize)
+    screen.orientation.addEventListener("change", handleResize);
 
     handleResize();
-   
+    console.log(windowSize);
     return () => {
-        window.removeEventListener("resize", handleResize);
-        screen.orientation.removeEventListener("change", handleResize);
-    }
-  }, []); 
+      window.removeEventListener("resize", handleResize);
+      screen.orientation.removeEventListener("change", handleResize);
+    };
+  }, []);
 
   return windowSize;
 }
 
-export default useWindowSize
+export default useWindowSize;

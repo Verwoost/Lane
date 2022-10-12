@@ -11,6 +11,7 @@ import {
   Slide,
 } from "./Lane.styled";
 import LaneItems from "./LaneItems";
+import useWindowSize from "../../features/useWindowSize";
 
 export default function Lane(props) {
   // const slideHeight = 200;
@@ -20,6 +21,7 @@ export default function Lane(props) {
   const [stateSlides, setStateSlides] = useState(props.slices);
   const [leftAndRightDisabled, setLeftAndRightDisabled] = useState(false);
   const screenWidth = document.getElementById("root").clientWidth;
+
   const slides = props.slices;
   const itemsPerLane = props.itemsPerLane;
   const slideHeight = (screenWidth / itemsPerLane) * (9 / 16);
@@ -30,9 +32,6 @@ export default function Lane(props) {
     slidesWithClones.push(slidesWithClones[1]);
     setStateSlides(slidesWithClones);
   }, [slides]);
-
-  console.log(slides);
-  console.log(stateSlides);
 
   useEffect(() => {
     if (visibleSlide == stateSlides.length - 1) {
