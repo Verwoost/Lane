@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import logo from "../../assets/n_logo.ico";
+import React from "react";
 
 const Container = styled.div`
   display: flex;
@@ -46,9 +47,11 @@ function showLogo() {
 }
 
 export default function LaneItems(props) {
+  const visibleLogo = React.useMemo(showLogo, [])
   return (
     <Container setheight={props.imageHeight}>
       {props.list.map((item, index) => {
+        
         return (
           <Container>
             <Title>{item.title}</Title>
@@ -57,7 +60,8 @@ export default function LaneItems(props) {
               width={props.imageWidth}
               height={props.imageHeight}
             ></SlideImg>
-            <img src={showLogo(logoArray)}></img>
+            {/* <img src={showLogo(logoArray)}></img> */}
+            <img src={visibleLogo}></img>
           </Container>
         );
       })}
