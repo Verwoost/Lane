@@ -46,7 +46,7 @@ function showLogo() {
 }
 
 export default function LaneItems(props) {
-
+  const visibleLogo = React.useMemo(showLogo, []);
   return (
     <Container setheight={props.imageHeight}>
       {props.list.map((item, index) => {

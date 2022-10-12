@@ -263,17 +263,18 @@ const movies = [
 const screenWidth = document.getElementById("root").clientWidth;
 
 function LaneHandler() {
+  const size = useWindowSize();
   function getAmount() {
-    if (screenWidth < 500) {
+    if (size.width < 500) {
       return 2;
     }
-    if (screenWidth < 800 && screenWidth > 500) {
+    if (size.width < 800 && size.width > 500) {
       return 3;
     }
-    if (screenWidth < 1100 && screenWidth > 800) {
+    if (size.width < 1100 && size.width > 800) {
       return 4;
     }
-    if (screenWidth > 1100) {
+    if (size.width > 1100) {
       return 6;
     }
   }
