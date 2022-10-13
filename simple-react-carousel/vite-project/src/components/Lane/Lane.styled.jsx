@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const LaneContainer = styled.section`
+  display: flex;
   overflow-x: hidden;
   position: relative;
 `;
@@ -60,10 +61,10 @@ export const ScrollLeftButton = styled.span`
   }
 `;
 
-export const ScrollRightButton = styled.span`
+export const ScrollRightButton = styled(ScrollLeftButton)`
   right: 0;
   left: auto;
-  border-bottom-left-radius: 4px;
+  /* border-bottom-left-radius: 4px;
   border-top-left-radius: 4px;
   cursor: pointer;
   width: 3rem;
@@ -80,9 +81,7 @@ export const ScrollRightButton = styled.span`
   opacity: 0;
   &:hover {
     font-size: 28px;
-  }
-
-  
+  } */
 `;
 
 export const Slides = styled.div`
@@ -96,18 +95,14 @@ export const Slides = styled.div`
 
 export const Slide = styled.div`
   /* child of Slides */
-  display: flex;
-  position: relative;
+  /* display: flex;
+  position: relative; */
 `;
 
-export const SlideInner = styled.div`
-  /* child of Slide */
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 5;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+export const MlaneContainer = styled.div`
+  width: 80vw;
   display: flex;
+  justify-content: center;
 `;
+
+export const Mslider = styled.div``;

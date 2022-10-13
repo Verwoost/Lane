@@ -265,13 +265,13 @@ const screenWidth = document.getElementById("root").clientWidth;
 function LaneHandler() {
   const size = useWindowSize();
   function getAmount() {
-    if (size.width < 500) {
+    if (size.width <= 500) {
       return 2;
     }
-    if (size.width < 800 && size.width > 500) {
+    if (size.width <= 800 && size.width > 500) {
       return 3;
     }
-    if (size.width < 1100 && size.width > 800) {
+    if (size.width <= 1100 && size.width > 800) {
       return 4;
     }
     if (size.width > 1100) {

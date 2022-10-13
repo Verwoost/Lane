@@ -5,11 +5,10 @@ import logo from "../../assets/n_logo.ico";
 const Container = styled.div`
   display: flex;
   /* height: ${(props) => props.setheight}; */
-  width: 100%;
+  /* width: 100%; */
   position: relative;
   top: 0;
   left: 0;
-  background-color: black;
   img:nth-of-type(2) {
     position: absolute;
     top: 8px;
@@ -51,7 +50,7 @@ export default function LaneItems(props) {
     <Container setheight={props.imageHeight}>
       {props.list.map((item, index) => {
         return (
-          <Container>
+          <Container key={index}>
             <Title>{item.title}</Title>
             <SlideImg
               src={"https://image.tmdb.org/t/p/original" + item.backdrop_path}

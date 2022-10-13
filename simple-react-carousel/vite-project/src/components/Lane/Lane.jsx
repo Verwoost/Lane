@@ -11,11 +11,10 @@ import {
   Slide,
 } from "./Lane.styled";
 import LaneItems from "./LaneItems";
-import useWindowSize from "../../features/useWindowSize";
 
 export default function Lane(props) {
   // const slideHeight = 200;
-  const transitionSpeed = 500;
+  const transitionSpeed = 600;
   const [visibleSlide, setVisibleSlide] = useState(1);
   const [hasTransitionClass, setHasTransitionClass] = useState(true);
   const [stateSlides, setStateSlides] = useState(props.slices);
@@ -151,8 +150,9 @@ export default function Lane(props) {
         >
           {stateSlides.map((slide, index) => {
             return (
-              <Slide key={index} style={slideDimensionStyles()}>
+              <Slide key={index}>
                 <LaneItems
+                  key={index}
                   list={Array.from(slide)}
                   imageWidth={screenWidth / itemsPerLane + "px"}
                   imageHeight={slideHeight + "px"}
