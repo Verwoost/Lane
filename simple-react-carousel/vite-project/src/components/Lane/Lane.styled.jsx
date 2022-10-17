@@ -124,4 +124,3 @@ export const Card = styled.div`
     width: 1.3vw;
   }
 `;
-
