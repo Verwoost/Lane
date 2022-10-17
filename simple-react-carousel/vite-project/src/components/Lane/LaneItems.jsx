@@ -5,7 +5,7 @@ import logo from "../../assets/n_logo.ico";
 const Container = styled.div`
   display: flex;
   /* height: ${(props) => props.setheight}; */
-  width: 100%;
+  // width: 100%;
   position: relative;
   top: 0;
   left: 0;

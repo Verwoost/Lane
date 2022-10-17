@@ -1,8 +1,19 @@
 import styled from "styled-components";
 
+export const LaneWrapper = styled.div`
+position: relative;
+overflow: hidden;
+width: 90vw;
+margin: auto;
+display: flex;
+`;
+
 export const LaneContainer = styled.section`
-  overflow-x: hidden;
+  // overflow-x: hidden;
   position: relative;
+  width: calc(100% - 6rem);
+  margin: auto;
+
 `;
 
 export const LaneTitle = styled.p`
@@ -17,7 +28,8 @@ export const LaneTitle = styled.p`
 export const SlideIndicator = styled.div`
   /* child of LaneContainer */
 
-  width: 100%;
+  width: 90vw;
+  margin: 0 auto;
   z-index: 10;
   height: 40px;
   display: flex;
@@ -37,27 +49,28 @@ export const IndicatorRect = styled.div`
 `;
 
 export const ScrollLeftButton = styled.span`
-  /* child of LaneContainer */
-  /* position: absolute;
-  opacity: ${(props) => (props.disabled ? "0.3" : "1")}; */
-  border-bottom-right-radius: 4px;
-  border-top-right-radius: 4px;
-  cursor: pointer;
-  width: 3rem;
-  height: 100%;
-  background-color: #14141440;
-  position: absolute;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  color: transparent;
-  transition: font-size 70ms linear;
-  opacity: 0;
-  &:hover {
-    font-size: 28px;
-  }
+left: 0;
+left: auto;
+border-bottom-left-radius: 4px;
+border-top-left-radius: 4px;
+cursor: pointer;
+width: 3rem;
+height: 100%;
+background-color: #14141440;
+position: absolute;
+z-index: 10;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 24px;
+color: transparent;
+transition: font-size 70ms linear;
+opacity: 0;
+&:hover {
+  font-size: 28px;
+}
+
+
 `;
 
 export const ScrollRightButton = styled.span`
@@ -85,6 +98,16 @@ export const ScrollRightButton = styled.span`
   
 `;
 
+export const LeftSide = styled.div`
+background-color: green;
+opacity: 0.5;
+
+`
+export const RightSide = styled.div`
+background-color: green;
+opacity: 0.5;
+`
+
 export const Slides = styled.div`
   /* child of Lane */
   transition: ${(props) => (props.hasTransitionClass ? "ease all 0.5s" : null)};
@@ -92,6 +115,7 @@ export const Slides = styled.div`
   top: 0;
   left: 0;
   display: flex;
+  scroll-padding-inline: 3rem;
 `;
 
 export const Slide = styled.div`

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {
+  LaneWrapper,
   LaneContainer,
   LaneTitle,
   SlideIndicator,
@@ -9,6 +10,8 @@ import {
   ScrollRightButton,
   Slides,
   Slide,
+  LeftSide,
+  RightSide,
 } from "./Lane.styled";
 import LaneItems from "./LaneItems";
 import useWindowSize from "../../features/useWindowSize";
@@ -21,10 +24,15 @@ export default function Lane(props) {
   const [stateSlides, setStateSlides] = useState(props.slices);
   const [leftAndRightDisabled, setLeftAndRightDisabled] = useState(false);
   const screenWidth = document.getElementById("root").clientWidth;
+  const test = screenWidth * 0.9
+  console.log(test)
+  const screenWidth2 = screenWidth * 0.9
+  console.log(screenWidth)
+  console.log(screenWidth2)
 
   const slides = props.slices;
   const itemsPerLane = props.itemsPerLane;
-  const slideHeight = (screenWidth / itemsPerLane) * (9 / 16);
+  const slideHeight = (screenWidth2 / itemsPerLane) * (9 / 16);
 
   useEffect(() => {
     const slidesWithClones = [...slides];
@@ -114,25 +122,11 @@ export default function Lane(props) {
           return <IndicatorRect key={index} active={dotIsActive(index)} />;
         })}
       </SlideIndicator>
-      <LaneContainer
-        className="lane_container"
-        style={slideDimensionStyles()}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+      <LaneWrapper
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
       >
-        <ScrollLeftButton
-          onClick={!leftAndRightDisabled ? scrollLeft : null}
-          disabled={leftAndRightDisabled}
-          style={{
-            zIndex: !isScrolled ? "-10" : "",
-            opacity: isHovered && isScrolled ? "1" : "",
-            color: isHovered ? "white" : "",
-            backgroundColor: isHovered ? "#14141480" : "",
-          }}
-        >
-          ❮
-        </ScrollLeftButton>
-        <ScrollRightButton
+   <ScrollRightButton
           onClick={!leftAndRightDisabled ? scrollRight : null}
           onMouseDown={() => setIsScrolled(true)}
           disabled={leftAndRightDisabled}
@@ -144,6 +138,24 @@ export default function Lane(props) {
         >
           ❯
         </ScrollRightButton>
+       
+      <ScrollLeftButton
+          onClick={!leftAndRightDisabled ? scrollLeft : null}
+          disabled={leftAndRightDisabled}
+          style={{
+            zIndex: !isScrolled ? "-10" : "",
+            opacity: isHovered && isScrolled ? "1" : "",
+            color: isHovered ? "white" : "",
+            backgroundColor: isHovered ? "#14141480" : "",
+          }}
+        >
+          ❮
+        </ScrollLeftButton>
+      <LaneContainer
+        className="lane_container"
+        style={slideDimensionStyles()}
+      >
+        
 
         <Slides
           hasTransitionClass={hasTransitionClass}
@@ -154,7 +166,7 @@ export default function Lane(props) {
               <Slide key={index} style={slideDimensionStyles()}>
                 <LaneItems
                   list={Array.from(slide)}
-                  imageWidth={screenWidth / itemsPerLane + "px"}
+                  imageWidth={screenWidth2 / itemsPerLane + "px"}
                   imageHeight={slideHeight + "px"}
                 ></LaneItems>
               </Slide>
@@ -162,6 +174,8 @@ export default function Lane(props) {
           })}
         </Slides>
       </LaneContainer>
+        
+      </LaneWrapper>
     </div>
   );
 }
