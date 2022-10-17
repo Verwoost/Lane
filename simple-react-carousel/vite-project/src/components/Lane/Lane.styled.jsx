@@ -87,20 +87,14 @@ export const Slides = styled.div`
 
 export const Slide = styled.div`
   /* child of Slides */
-  display: flex;
-  position: relative;
+  /* display: flex;
+  position: relative; */
 `;
 
-export const SlideInner = styled.div`
-  /* child of Slide */
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 5;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+export const MlaneContainer = styled.div`
+  width: 80vw;
   display: flex;
+  justify-content: center;
 `;
 
 export const Card = styled.div`
@@ -130,3 +124,4 @@ export const Card = styled.div`
     width: 1.3vw;
   }
 `;
+
