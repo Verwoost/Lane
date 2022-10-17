@@ -1,31 +1,41 @@
 import styled from "styled-components";
 
-export const LaneContainer = styled.section`
-  display: flex;
-  overflow-x: hidden;
+export const LaneWrapper = styled.div`
   position: relative;
+  overflow: hidden;
+  width: 90vw;
+  margin: auto;
+  display: flex;
 `;
 
-export const LaneTitle = styled.p`
-  position: absolute;
-  left: 60px;
-  /* top: -40px; */
-  z-index: 99;
-  color: white;
-  font-weight: bold;
+export const TopWrapper = styled.div`
+  width: 90vw;
+  margin: 0 auto;
+  display: flex;
+`;
+
+export const LaneTitle = styled.div`
+  color: #e5e5e5;
+  width: 90vw;
+  font-size: 1.2vw;
+  margin: 0 auto;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-right: 3rem;
 `;
 
 export const SlideIndicator = styled.div`
   /* child of LaneContainer */
-
-  width: 100%;
+  width: 50%;
   z-index: 10;
   height: 40px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 3rem;
   opacity: 0; /* set opacity 1 on hover / 0 on mouse leave */
 `;
 
@@ -38,11 +48,10 @@ export const IndicatorRect = styled.div`
 `;
 
 export const ScrollLeftButton = styled.span`
-  /* child of LaneContainer */
-  /* position: absolute;
-  opacity: ${(props) => (props.disabled ? "0.3" : "1")}; */
-  border-bottom-right-radius: 4px;
-  border-top-right-radius: 4px;
+  left: 0;
+  left: auto;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
   cursor: pointer;
   width: 3rem;
   height: 100%;
@@ -64,24 +73,6 @@ export const ScrollLeftButton = styled.span`
 export const ScrollRightButton = styled(ScrollLeftButton)`
   right: 0;
   left: auto;
-  /* border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
-  cursor: pointer;
-  width: 3rem;
-  height: 100%;
-  background-color: #14141440;
-  position: absolute;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  color: transparent;
-  transition: font-size 70ms linear;
-  opacity: 0;
-  &:hover {
-    font-size: 28px;
-  } */
 `;
 
 export const Slides = styled.div`
@@ -91,6 +82,7 @@ export const Slides = styled.div`
   top: 0;
   left: 0;
   display: flex;
+  scroll-padding-inline: 3rem;
 `;
 
 export const Slide = styled.div`
@@ -105,4 +97,31 @@ export const MlaneContainer = styled.div`
   justify-content: center;
 `;
 
-export const Mslider = styled.div``;
+export const Card = styled.div`
+  position: relative;
+  overflow: hidden;
+  margin: 3px;
+  border-radius: 5px;
+  cursor: pointer;
+  span {
+    position: absolute;
+    width: 100%;
+    padding: 0 5px;
+    bottom: 7px;
+    font-family: Futura;
+    text-align: center;
+    line-height: 0.9;
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0, 0.75);
+    z-index: 99;
+  }
+  img:nth-of-type(2) {
+    position: absolute;
+    top: 8px;
+    left: 3px;
+    width: 1.3vw;
+  }
+`;
+

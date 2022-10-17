@@ -1,29 +1,28 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {
-  LaneContainer,
-  LaneTitle,
+  LaneWrapper,
   SlideIndicator,
   IndicatorRect,
   ScrollLeftButton,
   ScrollRightButton,
   Slides,
   Slide,
+  LaneTitle,
+  TopWrapper,
 } from "./Lane.styled";
 import LaneItems from "./LaneItems";
 
 export default function Lane(props) {
-  // const slideHeight = 200;
-  const transitionSpeed = 600;
+  const transitionSpeed = 500;
   const [visibleSlide, setVisibleSlide] = useState(1);
   const [hasTransitionClass, setHasTransitionClass] = useState(true);
   const [stateSlides, setStateSlides] = useState(props.slices);
   const [leftAndRightDisabled, setLeftAndRightDisabled] = useState(false);
-  const screenWidth = document.getElementById("root").clientWidth;
-
+  const laneWidth = document.getElementById("root").clientWidth * 0.9;
   const slides = props.slices;
   const itemsPerLane = props.itemsPerLane;
-  const slideHeight = (screenWidth / itemsPerLane) * (9 / 16);
+  const slideHeight = (laneWidth / itemsPerLane) * (9 / 16);
 
   useEffect(() => {
     const slidesWithClones = [...slides];
@@ -71,11 +70,11 @@ export default function Lane(props) {
   }, [leftAndRightDisabled]);
 
   const calculateLeftMargin = () => {
-    return "-" + visibleSlide * screenWidth + "px";
+    return "-" + visibleSlide * laneWidth + "px";
   };
 
   const slideDimensionStyles = () => {
-    return { width: screenWidth + "px", height: slideHeight + "px" };
+    return { width: laneWidth + "px", height: slideHeight + "px" };
   };
 
   const scrollLeft = () => {
@@ -101,36 +100,28 @@ export default function Lane(props) {
 
   return (
     <div>
-      <SlideIndicator
-        style={{
-          opacity: isHovered ? "1" : "",
-        }}
-      >
-        {stateSlides.map((slide, index) => {
-          if (index === 0 || index === stateSlides.length - 1) {
-            return null;
-          }
-          return <IndicatorRect key={index} active={dotIsActive(index)} />;
-        })}
-      </SlideIndicator>
-      <LaneContainer
-        className="lane_container"
-        style={slideDimensionStyles()}
+      <TopWrapper>
+        <LaneTitle>
+          <h2>{props.categoryTitle}</h2>
+        </LaneTitle>
+
+        <SlideIndicator
+          style={{
+            opacity: isHovered ? "1" : "",
+          }}
+        >
+          {stateSlides.map((slide, index) => {
+            if (index === 0 || index === stateSlides.length - 1) {
+              return null;
+            }
+            return <IndicatorRect key={index} active={dotIsActive(index)} />;
+          })}
+        </SlideIndicator>
+      </TopWrapper>
+      <LaneWrapper
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <ScrollLeftButton
-          onClick={!leftAndRightDisabled ? scrollLeft : null}
-          disabled={leftAndRightDisabled}
-          style={{
-            zIndex: !isScrolled ? "-10" : "",
-            opacity: isHovered && isScrolled ? "1" : "",
-            color: isHovered ? "white" : "",
-            backgroundColor: isHovered ? "#14141480" : "",
-          }}
-        >
-          ❮
-        </ScrollLeftButton>
         <ScrollRightButton
           onClick={!leftAndRightDisabled ? scrollRight : null}
           onMouseDown={() => setIsScrolled(true)}
@@ -143,25 +134,41 @@ export default function Lane(props) {
         >
           ❯
         </ScrollRightButton>
-
-        <Slides
-          hasTransitionClass={hasTransitionClass}
-          style={{ left: calculateLeftMargin() }}
+        <ScrollLeftButton
+          onClick={!leftAndRightDisabled ? scrollLeft : null}
+          disabled={leftAndRightDisabled}
+          style={{
+            zIndex: !isScrolled ? "-10" : "",
+            opacity: isHovered && isScrolled ? "1" : "",
+            color: isHovered ? "white" : "",
+            backgroundColor: isHovered ? "#14141480" : "",
+          }}
         >
-          {stateSlides.map((slide, index) => {
-            return (
-              <Slide key={index}>
-                <LaneItems
-                  key={index}
-                  list={Array.from(slide)}
-                  imageWidth={screenWidth / itemsPerLane + "px"}
-                  imageHeight={slideHeight + "px"}
-                ></LaneItems>
-              </Slide>
-            );
-          })}
-        </Slides>
-      </LaneContainer>
+          ❮
+        </ScrollLeftButton>
+        <div
+          className="lane_container"
+          style={slideDimensionStyles()}
+        >
+          <Slides
+            hasTransitionClass={hasTransitionClass}
+            style={{ left: calculateLeftMargin() }}
+          >
+            {stateSlides.map((slide, index) => {
+              return (
+                <Slide key={index} style={slideDimensionStyles()}>
+                  <LaneItems
+                    list={Array.from(slide)}
+                    imageWidth={laneWidth / itemsPerLane - 6 + "px"}
+                    imageHeight={slideHeight + "px"}
+                    title={props.title}
+                  ></LaneItems>
+                </Slide>
+              );
+            })}
+          </Slides>
+        </div>
+      </LaneWrapper>
     </div>
   );
 }
