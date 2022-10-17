@@ -17,7 +17,6 @@ function useWindowSize() {
     screen.orientation.addEventListener("change", handleResize);
 
     handleResize();
-    console.log(windowSize);
     return () => {
       window.removeEventListener("resize", handleResize);
       screen.orientation.removeEventListener("change", handleResize);
