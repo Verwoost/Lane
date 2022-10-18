@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const LaneWrapper = styled.div`
   position: relative;
   overflow: hidden;
-  width: 90vw;
+  width: 90%;
   margin: auto;
   display: flex;
 `;

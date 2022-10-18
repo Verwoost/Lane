@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Card } from "./Lane.styled";
 
 const Container = styled.div`
@@ -15,12 +15,20 @@ const Container = styled.div`
   }
 `;
 
+const Trigger = styled.div`
+  position: absolute;
+  background-color: transparent;
+  border: 2px solid red;
+  color: white;
+  z-index: 1000;
+`;
+
 export default function LaneItems(props) {
   return (
     <Container>
       {props.list.map((item, index) => {
         return (
-          <Container>
+          <Container key={index}>
             <Card>
               <span>{item.title}</span>
               <img
